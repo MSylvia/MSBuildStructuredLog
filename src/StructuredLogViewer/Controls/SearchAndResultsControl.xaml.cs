@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace StructuredLogViewer.Controls
 {
@@ -53,11 +54,28 @@ namespace StructuredLogViewer.Controls
             typingConcurrentOperation.TriggerSearch(text, maxResults);
         }
 
+        private void searchTextBox_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (SettingsService.SearchOnEnter && e.Key == Key.Enter)
+            {
+                var searchText = searchTextBox.Text;
+                UpdateSearch(searchText);
+            }
+        }
+
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            var searchText = searchTextBox.Text;
+           var searchText = searchTextBox.Text;
             TextChanged?.Invoke(searchText);
 
+            if (!SettingsService.SearchOnEnter)
+            {
+                UpdateSearch(searchText);
+            }
+        }
+
+        private void UpdateSearch(string searchText)
+        {
             if (string.IsNullOrWhiteSpace(searchText) || searchText.Length < 3)
             {
                 typingConcurrentOperation.Reset();

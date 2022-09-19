@@ -1,4 +1,4 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:l="clr-namespace:Microsoft.Build.Logging.StructuredLogger;assembly=StructuredLogger"
                     xmlns:local="clr-namespace:Microsoft.Build.Logging.StructuredLogger"
@@ -870,6 +870,10 @@
                       Margin="10,0,10,10"
                       IsChecked="{Binding UseDarkTheme}"
                       ToolTip="Use dark theme"/>
+             <CheckBox Content="Disable Auto Search"
+                      Margin="10,0,10,10"
+                      IsChecked="{Binding SearchOnEnter}"
+                      ToolTip="When enabled searches will execute on enter instead of keypress"/>               
           </StackPanel>
         </Grid>
       </Grid>

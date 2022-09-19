@@ -355,6 +355,28 @@ namespace StructuredLogViewer
             }
         }
 
+        private static bool searchOnEnter = false;
+
+        public static bool SearchOnEnter
+        {
+            get
+            {
+                EnsureSettingsRead();
+                return searchOnEnter;
+            }
+
+            set
+            {
+                if (searchOnEnter == value)
+                {
+                    return;
+                }
+
+                searchOnEnter = value;
+                SaveSettings();
+            }
+        }
+
         private static void EnsureSettingsRead()
         {
             if (!settingsRead)
@@ -367,6 +389,7 @@ namespace StructuredLogViewer
         const string Virtualization = "Virtualization=";
         const string MarkResultsInTreeSetting = "MarkResultsInTree=";
         const string UseDarkThemeSetting = "UseDarkTheme=";
+        const string SearchOnEnterSetting = "SearchOnEnter=";
 
         private static void SaveSettings()
         {
@@ -375,6 +398,7 @@ namespace StructuredLogViewer
             //sb.AppendLine(ParentAllTargetsUnderProjectSetting + parentAllTargetsUnderProject.ToString());
             sb.AppendLine(MarkResultsInTreeSetting + markResultsInTree.ToString());
             sb.AppendLine(UseDarkThemeSetting + useDarkTheme.ToString());
+            sb.AppendLine(SearchOnEnterSetting + searchOnEnter.ToString());
 
             using (SingleGlobalInstance.Acquire(Path.GetFileName(settingsFilePath)))
             {
@@ -400,6 +424,7 @@ namespace StructuredLogViewer
                     //ProcessLine(ParentAllTargetsUnderProjectSetting, line, ref parentAllTargetsUnderProject);
                     ProcessLine(MarkResultsInTreeSetting, line, ref markResultsInTree);
                     ProcessLine(UseDarkThemeSetting, line, ref useDarkTheme);
+                    ProcessLine(SearchOnEnterSetting, line, ref searchOnEnter);
 
                     void ProcessLine(string setting, string text, ref bool variable)
                     {

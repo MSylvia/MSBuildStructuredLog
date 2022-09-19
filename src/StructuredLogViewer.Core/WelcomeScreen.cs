@@ -128,5 +128,15 @@ namespace Microsoft.Build.Logging.StructuredLogger
                 RaisePropertyChanged();
             }
         }
+
+        public bool SearchOnEnter
+        {
+            get => SettingsService.SearchOnEnter;
+            set
+            {
+                SettingsService.SearchOnEnter = value;
+                RaisePropertyChanged();
+            }
+        }
     }
 }

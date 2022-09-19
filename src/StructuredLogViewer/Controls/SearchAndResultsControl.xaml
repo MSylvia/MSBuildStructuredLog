@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="StructuredLogViewer.Controls.SearchAndResultsControl"
+<UserControl x:Class="StructuredLogViewer.Controls.SearchAndResultsControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -14,6 +14,7 @@
     <Grid DockPanel.Dock="Top" x:Name="topPanel">
       <TextBox x:Name="searchTextBox"
                TextChanged="searchTextBox_TextChanged"
+               KeyUp="searchTextBox_KeyUp"
                MinHeight="23"
                VerticalContentAlignment="Center"
                BorderThickness="0,0,0,1" />
